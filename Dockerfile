@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
     && pecl install oauth-2.0.2 \
     && pecl install redis-3.1.6 \
     && pecl install xdebug \
+    && pecl install memcached \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
@@ -30,6 +31,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-enable oauth \
     && docker-php-ext-enable redis \
     && docker-php-ext-enable xdebug \
+    && docker-php-ext-enable memcached \
     && docker-php-ext-install \
     bcmath \
     bz2 \
