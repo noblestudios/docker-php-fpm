@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     xfonts-base \
     xfonts-75dpi \
     ssmtp \
+    libmemcached-dev \
     && pecl install imagick \
     && pecl install oauth-2.0.2 \
     && pecl install redis-3.1.6 \
