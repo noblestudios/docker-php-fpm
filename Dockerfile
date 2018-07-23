@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.1-fpm
 
 # Install some required tools
 RUN apt-get update && apt-get install -y sudo less 
@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     libkrb5-dev \
     libldap2-dev \
     libmagickwand-dev \
-    libpng-dev \
+    libmcrypt-dev \
+    libpng12-dev \
     libpq-dev \
     libxml2-dev \
     mysql-client \
@@ -26,7 +27,6 @@ RUN apt-get update && apt-get install -y \
     && pecl install redis-3.1.6 \
     && pecl install xdebug \
     && pecl install memcached \
-    && echo "mailhub=mailcatcher:1025\nUseTLS=NO\nFromLineOverride=YES" > /etc/ssmtp/ssmtp.conf \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
@@ -34,7 +34,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-enable oauth \
     && docker-php-ext-enable redis \
     && docker-php-ext-enable xdebug \
-    && docker-php-ext-enable memcached \
     && docker-php-ext-install \
     bcmath \
     bz2 \
@@ -42,6 +41,7 @@ RUN apt-get update && apt-get install -y \
     gd \
     imap \
     ldap \
+    mcrypt \
     mbstring \
     mysqli \
     opcache \
