@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     libldap2-dev \
     libmagickwand-dev \
     libmcrypt-dev \
-    libpng12-dev \
+    libpng-dev \
     libpq-dev \
     libxml2-dev \
     mysql-client \
