@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.0-fpm
 
 # Install some required tools
 RUN apt-get update && apt-get install -y sudo less 
@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
     libmemcached-dev \
     && pecl install imagick \
     && pecl install oauth-2.0.2 \
-    && pecl install redis-3.1.6 \
+    && pecl install redis-3.0.0 \
     && pecl install xdebug \
     && pecl install memcached \
     && echo "mailhub=mailcatcher:1025\nUseTLS=NO\nFromLineOverride=YES" > /etc/ssmtp/ssmtp.conf \
