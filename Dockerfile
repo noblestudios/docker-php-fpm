@@ -65,6 +65,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 && ln -s /usr/local/bin/wp-cli.phar /usr/local/bin/wp
 
 # Run this container as "webuser"
-RUN groupadd -r webuser && useradd -r -g webuser webuser
+RUN groupadd -r -g 1000 webuser && useradd -r -u 1000 -g webuser webuser
 RUN usermod -aG www-data webuser
 USER webuser
