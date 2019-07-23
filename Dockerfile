@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y sudo less
 # Install PHP Extensions
 RUN apt-get update && apt-get install -y \
     bzip2 \
+    libzip-dev \
     libbz2-dev \
     libc-client2007e-dev \
     libjpeg-dev \
