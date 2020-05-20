@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.4-fpm
 
 # Install some required tools
 RUN apt-get update && apt-get install -y sudo less
@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y sudo less
 # Install PHP Extensions
 RUN apt-get update && apt-get install -y \
     bzip2 \
-    libzip-dev \
     libbz2-dev \
     libc-client2007e-dev \
     libjpeg-dev \
@@ -16,25 +15,28 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libpq-dev \
     libxml2-dev \
-    mysql-client-* \
+    libonig-dev \
+    libzip-dev \
+    mysql-client-*
+
+RUN apt-get update && apt-get install -y \
     imagemagick \
     xfonts-base \
     xfonts-75dpi \
-    libmemcached-dev \
     && pecl install imagick \
-    && pecl install oauth-2.0.2 \
+    && pecl install oauth-2.0.5 \
     && pecl install redis-3.1.6 \
-    && pecl install xdebug \
-    && pecl install memcached \
-    && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
+    && pecl install xdebug
+
+RUN docker-php-ext-configure gd --with-freetype=/usr --with-jpeg=/usr \
     && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable oauth \
     && docker-php-ext-enable redis \
-    && docker-php-ext-enable xdebug \
-    && docker-php-ext-enable memcached \
-    && docker-php-ext-install \
+    && docker-php-ext-enable xdebug
+
+RUN docker-php-ext-install \
     bcmath \
     bz2 \
     calendar \
